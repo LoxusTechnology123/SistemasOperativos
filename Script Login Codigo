@@ -1,0 +1,193 @@
+#!/bin/bash 
+# Primer SH realizado por Loxus Technology
+# Autores: Gaston Benitez, Joaquin Rossi, Yenifer Alonso y Marcos Rosas
+# Poner el sh Loxus, en en el directorio SHs dentro del directorio principal.
+ 
+chmod 777 LTFirstSH.sh
+
+# Variables
+	txtLogin=$(echo -e "\e[92mElija una opcion:\e[0m")
+	txtUsername=$(echo -e "\e[92mNOMBRE:\e[0m")
+	txtPassword=$(echo -e "\e[92mCONTRASENA:\e[0m")
+
+# ----------------------
+
+# Directorios 
+	if test -d Loxus_Technology
+	then
+		cd Loxus_Technology
+	else
+		mkdir Loxus_Technology
+		cd Loxus_Technology
+		mkdir SHs
+		mkdir users
+		mkdir backup
+		cd backup
+		mkdir users
+		cd ..
+		cd users
+		mkdir Admin # Nombre de usuario del Admin 
+		cd Admin
+		mkdir Loxus # Pass del Admin
+		cd ..
+		cd ..
+	fi		 
+# ----------------------
+
+function MainMenu {
+	clear
+	echo -e "\e[31m╔══════════════════════════════════════════════════╗\e[o"
+	echo 	""
+	echo -e	"	             \e[92mBIENVENIDO\e[o						   "
+	echo	""
+	echo -e "\e[31m╚══════════════════════════════════════════════════╝\e[o"
+	echo	"" 
+	echo -e "\e[31m╔══════════════════════════════════════════════════╗\e[0m"
+	echo -e "\e[92m                  ___                                    "
+	echo -e "\e[92m                 |   |                                   "
+	echo -e "\e[92m                 | 1 |  INICIAR SESION                   "
+	echo -e "\e[92m                 |___|                                   "
+	echo -e "\e[92m                             ___                         "
+	echo -e "\e[92m                            |   |                        "
+	echo -e "\e[92m                            | 2 |  REGISTRARSE           "
+	echo -e "\e[92m                            |___|                        "
+	echo -e "\e[92m                  ___                                    "
+	echo -e "\e[92m                 |   |                                   "
+	echo -e "\e[92m                 | 0 |  SALIR                            "
+	echo -e "\e[92m                 |___|                                   "
+	echo -e "\e[92m                                                         "
+	echo -e "\e[31m╚══════════════════════════════════════════════════╝\e[0m"
+	echo ""
+	echo -e "\e[31m╔══════════════════════════════════════════════════╗\e[0m"
+	echo    "                                                               "
+	read -p "                  $txtLogin" opLogin
+	echo    "                                                               "
+	echo -e "\e[31m╚══════════════════════════════════════════════════╝\e[0m"
+	sleep 1
+
+	case $opLogin in
+		1)
+			clear
+			Login;;
+
+		2)
+			clear
+			Registrarse;;
+
+		0) exit;;
+
+		*) MainMenu;;
+
+		esac
+}
+
+function Registrarse {
+	clear
+	echo -e "\e[31m╔══════════════════════════════════════════════════╗\e[o"
+	echo 	""
+	echo -e	"	             \e[92mREGISTRO\e[o							   "
+	echo	""
+	echo -e "\e[31m╚══════════════════════════════════════════════════╝\e[o"
+	echo	"" 
+	echo -e "\e[31m╔══════════════════════════════════════════════════╗\e[0m"
+    echo    ""                 		                		  			
+	echo    ""
+	read -p "   	$txtUsername" username
+	echo    ""
+	echo    ""
+	read -p "   	$txtPassword" password
+	echo    ""
+	echo    ""
+	echo -e	"\e[31m╚══════════════════════════════════════════════════╝\e[0m"
+	sleep 1
+
+	cd users
+	if test -d "$username" 
+		then
+			echo -e "\e[31m╔══════════════════════════════════════════════════╗\e[0m"
+			echo    "                 		                 	          			"
+			echo -e	"	    \e[93m$username\e[0m \e[92musuario ya utilizado	   \e[0m"
+			echo    "                 		                 	          			"
+			echo -e	"\e[31m╚══════════════════════════════════════════════════╝\e[0m"
+			sleep 5
+		    cd ..	 
+			Registrarse
+		else
+			mkdir $username
+			cd $username
+			mkdir $password
+			cd ..
+    		cd ..
+			cd backup
+			cd users
+			mkdir $username
+			cd $username
+			mkdir $password
+			cd ..
+    		cd ..
+			cd ..
+			echo -e "\e[31m╔══════════════════════════════════════════════════╗\e[0m"
+			echo    "                 		                 	          			"
+			echo -e	"	\e[93m$username\e[0m \e[92musuario creado satisfactoriamente\e[0m"
+			echo    "                 		                 	          			"
+			echo -e	"\e[31m╚══════════════════════════════════════════════════╝\e[0m"
+			sleep 5
+    		Login
+	fi
+}
+
+function Login {
+	clear
+	echo -e "\e[31m╔══════════════════════════════════════════════════╗\e[o"
+	echo 	""
+	echo -e	"	             \e[92mLOGIN\e[o							   "
+	echo	""
+	echo -e "\e[31m╚══════════════════════════════════════════════════╝\e[o"
+	echo	""
+	echo -e "\e[31m╔══════════════════════════════════════════════════╗\e[0m"
+    echo    ""                 		                		  			
+	echo    ""
+	read -p "   	$txtUsername" usernamein
+	echo    ""
+	echo    ""
+	read -p "   	$txtPassword" passwordin
+	echo    ""
+	echo    ""
+	echo -e	"\e[31m╚══════════════════════════════════════════════════╝\e[0m"
+	echo    ""
+
+	cd users
+	if test -d "$usernamein" 
+		then
+			cd $usernamein
+			if test -d "$passwordin"
+				then
+					clear						
+					cd ..
+					cd ..
+					cd SHs
+					sh ./loxus.sh
+					cd ..
+					clear
+				else
+					echo -e "\e[31m╔══════════════════════════════════════════════════╗\e[0m"
+					echo    "                 		                 	          			"
+					echo -e	"\e[91m	    $usernamein contrasena incorrecta		  	   \e[0m"
+					echo    "                 		                 	          			"
+					echo -e	"\e[31m╚══════════════════════════════════════════════════╝\e[0m"
+					sleep 5
+					cd ..
+					Login
+			fi
+		else
+			echo -e "\e[31m╔══════════════════════════════════════════════════╗\e[0m"
+			echo    "                 		                 	          			"
+			echo -e	"\e[91m		$username Usuario incorrecto				   \e[0m"
+			echo    "                 		                 	          			"
+			echo -e	"\e[31m╚══════════════════════════════════════════════════╝\e[0m"
+			sleep 5
+    		cd ..
+			Login
+	fi
+}
+MainMenu
