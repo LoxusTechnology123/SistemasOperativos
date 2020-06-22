@@ -1,0 +1,105 @@
+--MODIFICACION DE USUARIO--
+#! bin/bash
+echo "*******************************************************"
+echo "*                                                     *"
+echo "*                                                     *"
+echo "*       Bienvenido a la modificacion de usuario       *"
+echo "*                                                     *"
+echo "*                                                     *"
+echo "*******************************************************"
+echo "*******************************************************"
+echo "*               1- Modificar usuario                  *"
+echo "*               2- Salir                              *"
+echo "*******************************************************"
+read opcion
+case $opcion in
+	1) echo "Nombre del usuario "
+		read nombre
+		usermod $nombre;;
+	2) sh ./loxus.sh;;
+esac
+
+-- FIN DE MODIFICACION DE USUARIO--
+
+-- ALTA DE USUARIO --
+#bin/bash
+
+echo "***********************************************************************"
+echo "*                                                                     *"
+echo "*                                                                     *"
+echo "*                    Bienvenido a alta del usuario                    *"
+echo "*                                                                     *"
+echo "***********************************************************************"
+echo "***********************************************************************"
+echo "*                    1- Dar de alta                                   *"
+echo "*                    2- Salir                                         *"
+echo "***********************************************************************"
+read NOMBRE  #Se le da al usuario la posibilidad de escribir, y asi ingresar el nombre del usuario a dar el alta
+case $NOMBRE in
+	1) echo "Nombre del usuario"
+		read nombre
+		adduser $nombre;;
+	2) sh ./loxus.sh;;
+esac
+
+--FIN DE ALTA DE USUARIO--
+
+--BAJA DE USUARIO--
+
+#!/bin/bash
+echo "*****************************************************************"
+echo "*                                                               *"
+echo "*                                                               *"
+echo "*               Bienvenido a dar de baja al usuario             *"
+echo "*                                                               *"
+echo "*                                                               *"
+echo "*****************************************************************"
+echo "*****************************************************************"
+echo "*               1- Dar de baja                                  *"
+echo "*               2- Salir                                        *"
+echo "*****************************************************************"
+read opcion
+case $opcion in
+	1) echo "Nombre del usuario a dar de baja"
+		read nombre
+		usserdel $nombre;;
+	2) sh ./loxus.sh;;
+esac
+
+--FIN DE BAJA DE USUARIO--
+
+--INTERFAZ DE SELECCION--
+#!/bin/bash
+echo "*********************************************************************"
+echo "*                                                                   *" 
+echo "*                                                                   *"
+echo "*                                                                   *"
+echo "*                                                                   *"
+echo "*                Bienvenido a Loxus Technology                      *"
+echo "*                                                                   *"
+echo "*                                                                   *"
+echo "*                                                                   *"
+echo "*                                                                   *"
+echo "*********************************************************************"
+echo "*********************************************************************"
+echo "*                                                                   *"
+echo "*                                                                   *"
+echo "*                                                                   *"
+echo "*                Seleccion la opcion que desea                      *"
+echo "*                                                                   *"
+echo "*                1- Alta de usuario                                 *"
+echo "*                2- Baja de usuario                                 *" 
+echo "*                3- Modificacion de usuario                         *"
+echo "*                                                                   *"
+echo "*                                                                   *"
+echo "*                                                                   *"
+echo "*********************************************************************"
+echo "Opcion que desea: "
+read opcion
+case $opcion in
+	1)sh ./altausuario.sh ;;
+	2)sh ./bajausuario.sh ;;
+	3)sh ./modificacionusuario.sh ;;
+esac
+
+--FIN DE INTERFAZ DE SELECCION
